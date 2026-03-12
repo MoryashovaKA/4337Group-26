@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System.Data;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +25,15 @@ namespace Group4337
         public _4337_Moryashova()
         {
             InitializeComponent();
+        }
+        private void BtnImport_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Импорт данных из 2.xlsx");
+        }
+
+        private void BtnExport_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Экспорт данных по статусу");
         }
     }
 }
