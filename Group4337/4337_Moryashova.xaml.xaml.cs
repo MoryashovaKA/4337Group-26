@@ -28,7 +28,33 @@ namespace Group4337
         }
         private void BtnImport_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Импорт данных из 2.xlsx");
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Excel files|*.xlsx",
+                FileName = "2.xlsx"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    using (var workbook = new XLWorkbook(openFileDialog.FileName))
+                    {
+                        var worksheet = workbook.Worksheet(1);
+                        var range = worksheet.RangeUsed();
+
+                        int rows = range.RowCount();
+
+                        MessageBox.Show($"Импортировано строк: {rows - 1}", "Успех",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void BtnExport_Click(object sender, RoutedEventArgs e)
